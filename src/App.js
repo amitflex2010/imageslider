@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ImageComponent from "./componets/ImageComponent";
+import SearchInput from "./componets/SearchInput";
+import { ImageContextProvider } from "./context/ImageContext";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import { makeStyles } from "@material-ui/core/styles";
+import { useEffect } from "react";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ImageContextProvider>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <SearchInput />
+          </Toolbar>
+        </AppBar>
+      </div>
+      <ImageComponent />
+    </ImageContextProvider>
   );
 }
 
